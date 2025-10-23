@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Domain gate (hashed whitelist) — MUST be the first script in <head> -->
+    <script src="gate.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCN · NVIDIA Compute Network</title>
+    <link rel="icon" type="image/png" href="/Nvidia-Logo-PNG-Clipart.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="gpu-dashboard.css">
+    <link rel="preload" as="image" href="/game.jpeg" fetchpriority="high">
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+    <div class="hex-pattern"></div>
+    
+    <header id="header">
+        <div class="header-container">
+            <div class="brand">
+                <img src="/Nvidia-Logo-PNG-Clipart.png" alt="NCN Logo" class="brand-icon">
+                <span class="brand-text">NCN <span class="brand-separator">·</span> <span class="brand-subtitle" data-lang-key="header.brandSubtitle">NVIDIA Compute Network</span></span>
+            </div>
+            <nav class="nav">
+                <a href="#whitepaper" class="nav-link" data-lang-key="header.whitepaper">Whitepaper</a>
+                <div class="language-switcher">
+                    <button id="lang-toggle" class="lang-toggle-btn">English</button>
+                    <div id="lang-dropdown" class="lang-dropdown">
+                        <a href="#" class="lang-option" data-lang="en">English</a>
+                        <a href="#" class="lang-option" data-lang="zh-TW">繁體中文</a>
+                        <a href="#" class="lang-option" data-lang="ko">한국어</a>
+                        <a href="#" class="lang-option" data-lang="es">Español</a>
+                    </div>
+                </div>
+                <a href="#buy" class="btn-nav" data-lang-key="header.buy">Buy $NVAI</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <video id="hero-video" autoplay muted loop playsinline>
+                <source src="/NADIA.mp4" type="video/mp4">
+            </video>
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1 class="hero-headline" data-lang-key="hero.title">The Future of AI Compute is Decentralized.</h1>
+                    <p class="hero-subhead" data-lang-key="hero.subtitle">NCN connects global GPU power into an open AI marketplace. With Proof of Compute, every task fuels real training and inference.</p>
+                    
+                    <div class="hero-ctas">
+                        <a href="#testnet" class="btn btn-primary" data-lang-key="hero.joinTestnet">Join Testnet</a>
+                        <a href="#run-node" class="btn btn-secondary" data-lang-key="hero.runNode">Run a Node</a>
+                        <a href="#buy" class="btn btn-tertiary" data-lang-key="hero.buy">Buy $NVAI</a>
+                    </div>
+
+                    <div class="countdown">
+                        <div class="countdown-label" data-lang-key="hero.countdownLabel">Mainnet Launch In</div>
+                        <div class="countdown-tiles">
+                            <div class="countdown-tile">
+                                <div class="countdown-value" id="days">00</div>
+                                <div class="countdown-unit" data-lang-key="hero.days">Days</div>
+                            </div>
+                            <div class="countdown-tile">
+                                <div class="countdown-value" id="hours">00</div>
+                                <div class="countdown-unit" data-lang-key="hero.hours">Hours</div>
+                            </div>
+                            <div class="countdown-tile">
+                                <div class="countdown-value" id="minutes">00</div>
+                                <div class="countdown-unit" data-lang-key="hero.minutes">Minutes</div>
+                            </div>
+                            <div class="countdown-tile">
+                                <div class="countdown-value" id="seconds">00</div>
+                                <div class="countdown-unit" data-lang-key="hero.seconds">Seconds</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <canvas id="wireframe-globe"></canvas>
+                </div>
+            </div>
+            <div class="diagonal-stripe"></div>
+        </section>
+
+        <section id="about-ncn">
+            <div class="container about-grid">
+                <div class="about-body">
+                    <div class="section-header">
+                        <span class="section-label" data-lang-key="about.label">About</span>
+                        <h2 class="section-title" data-lang-key="about.title">About NCN</h2>
+                    </div>
+                    <p class="about-text" data-lang-key="about.text">The NVIDIA Compute Network (NCN) is a decentralized AI compute infrastructure inspired by NVIDIA's mission to accelerate global AI innovation. By connecting GPU nodes worldwide through blockchain, NCN empowers developers, enterprises, and creators to access verifiable AI power — anywhere, anytime.</p>
+                    <div class="about-cta">
+                        <a class="btn btn-primary" href="#developer-portal" data-lang-key="about.cta.docs">Developer Docs →</a>
+                        <a class="btn btn-secondary" href="#workloads" data-lang-key="about.cta.useCases">Explore Use Cases →</a>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <img src="/ywd.jpg" alt="About NCN visual" data-lang-key-alt="about.visualAlt" />
+                </div>
+            </div>
+        </section>
+
+        <section id="presale" class="presale-section">
+            <div class="container">
+                <h2 class="presale-title" data-lang-key="presale.title">NVAI Token Presale</h2>
+                <div class="presale-subtitle" data-lang-key="presale.subtitle">Early Access to the Decentralized GPU Network</div>
+                
+                <div class="presale-countdown">
+                    <div class="presale-countdown-tile">
+                        <div class="presale-countdown-value" id="presale-days">00</div>
+                        <div class="presale-countdown-unit" data-lang-key="hero.days">Days</div>
+                    </div>
+                    <div class="presale-countdown-tile">
+                        <div class="presale-countdown-value" id="presale-hours">00</div>
+                        <div class="presale-countdown-unit" data-lang-key="hero.hours">Hours</div>
+                    </div>
+                    <div class="presale-countdown-tile">
+                        <div class="presale-countdown-value" id="presale-minutes">00</div>
+                        <div class="presale-countdown-unit" data-lang-key="hero.minutes">Minutes</div>
+                    </div>
+                    <div class="presale-countdown-tile">
+                        <div class="presale-countdown-value" id="presale-seconds">00</div>
+                        <div class="presale-countdown-unit" data-lang-key="hero.seconds">Seconds</div>
+                    </div>
+                </div>
+
+                <div class="presale-card">
+                    <div class="currency-tabs">
+                        <button class="currency-tab active" data-currency="ETH">ETH</button>
+                        <button class="currency-tab" data-currency="BNB">BNB</button>
+                        <button class="currency-tab" data-currency="USDT">USDT</button>
+                        <button class="currency-tab" data-currency="USDC">USDC</button>
+                    </div>
+
+                    <div class="amount-input-wrapper">
+                        <label for="purchase-amount" class="input-label" data-lang-key="presale.amountToSpend">Amount to Spend</label>
+                        <div class="input-group">
+                            <input type="number" id="purchase-amount" class="amount-input" placeholder="0.00" step="any" min="0">
+                            <span class="input-currency" id="input-currency">ETH</span>
+                        </div>
+                        <div class="min-amount-hint" id="min-amount-hint" data-lang-key="presale.minAmountHint" data-lang-key-format="Minimum: {amount} {currency}">Minimum: 0.05 ETH</div>
+                    </div>
+
+                    <div class="receive-panel">
+                        <div class="receive-label" data-lang-key="presale.youWillReceive">You'll Receive</div>
+                        <div class="receive-amount" id="receive-amount">0 NVAI</div>
+                    </div>
+
+                    <div class="presale-actions">
+                        <button class="btn btn-primary btn-buy" id="btn-buy-nvai" data-lang-key="presale.buyNow">BUY NVAI</button>
+                        <button class="btn btn-secondary" id="btn-purchase-guide" data-lang-key="presale.purchaseGuide">PURCHASE GUIDE</button>
+                    </div>
+
+                    <div class="presale-divider">
+                        <span data-lang-key="presale.auditBy">AUDIT BY</span>
+                    </div>
+
+                    <div class="audit-logos">
+                        <img src="/OPENZEPPELIN.png" alt="OpenZeppelin" class="audit-logo" data-lang-key-alt="presale.audit.openzeppelin">
+                        <img src="/certik.png" alt="CertiK" class="audit-logo" data-lang-key-alt="presale.audit.certik">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="compute-lineup">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-lang-key="platform.label">Platform</span>
+                    <h2 class="section-title" data-lang-key="platform.title">Compute Lineup</h2>
+                </div>
+                <div class="product-rail">
+                    <div class="product-tile">
+                        <div class="tile-shine"></div>
+                        <h3 class="tile-title" data-lang-key="platform.poc.title">Proof of Compute</h3>
+                        <p class="tile-text" data-lang-key="platform.poc.text">Cryptographically verified GPU execution. Real AI workloads replace wasteful mining.</p>
+                    </div>
+                    <div class="product-tile">
+                        <div class="tile-shine"></div>
+                        <h3 class="tile-title" data-lang-key="platform.cuda.title">CUDA Virtual Machine</h3>
+                        <p class="tile-text" data-lang-key="platform.cuda.text">GPU-aware smart contracts orchestrate training and inference across the network.</p>
+                    </div>
+                    <div class="product-tile">
+                        <div class="tile-shine"></div>
+                        <h3 class="tile-title" data-lang-key="platform.settlement.title">Settlement Layer</h3>
+                        <p class="tile-text" data-lang-key="platform.settlement.text">EVM-compatible L2 for instant payments, staking, and compute bounties via $NVAI.</p>
+                    </div>
+                    <div class="product-tile">
+                        <div class="tile-shine"></div>
+                        <h3 class="tile-title" data-lang-key="platform.edge.title">Edge & Jetson</h3>
+                        <p class="tile-text" data-lang-key="platform.edge.text">Jetson, Orin, RTX consumer cards participate in distributed AI inference mesh.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-lang-key="tech.label">Technology</span>
+                    <h2 class="section-title" data-lang-key="tech.title">Architecture</h2>
+                </div>
+                <div class="architecture-grid">
+                    <div class="card">
+                        <h3 class="card-title" data-lang-key="tech.data.title">Data & Models</h3>
+                        <p class="card-text" data-lang-key="tech.data.text">IPFS/Arweave/Filecoin for dataset persistence. Model outputs tokenized as provenance NFTs.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title" data-lang-key="tech.security.title">Security</h3>
+                        <p class="card-text" data-lang-key="tech.security.text">Zero-knowledge proofs and spot-check verifications ensure compute integrity. Anti-sybil node reputation system.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title" data-lang-key="tech.verification.title">Verification</h3>
+                        <p class="card-text" data-lang-key="tech.verification.text">Commit-reveal protocol with cryptographic commitments. Random audits validate execution correctness.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title" data-lang-key="tech.consensus.title">Consensus</h3>
+                        <p class="card-text" data-lang-key="tech.consensus.text">Hybrid PoC/PoS mechanism balances computational work with network security through stake-weighted validation.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title" data-lang-key="tech.scalability.title">Scalability</h3>
+                        <p class="card-text" data-lang-key="tech.scalability.text">Horizontal compute sharding enables parallel task execution across heterogeneous GPU clusters.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title" data-lang-key="tech.interoperability.title">Interoperability</h3>
+                        <p class="card-text" data-lang-key="tech.interoperability.text">Cross-chain bridges to Ethereum, Solana, and Cosmos for seamless asset and data transfer.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tokenomics">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-lang-key="tokenomics.label">Economics</span>
+                    <h2 class="section-title" data-lang-key="tokenomics.title">Tokenomics — $NVAI</h2>
+                </div>
+                <div class="tokenomics-layout">
+                    <div class="tokenomics-chart">
+                        <svg id="donut-chart" viewBox="0 0 200 200"></svg>
+                        <div class="chart-center">
+                            <div class="chart-total">10B</div>
+                            <div class="chart-label">NVAI</div>
+                        </div>
+                    </div>
+                    <div class="tokenomics-legend">
+                        <!-- Legend items will be dynamically generated -->
+                    </div>
+                </div>
+                <div class="tokenomics-cards">
+                    <div class="card">
+                        <h3 class="card-title" data-lang-key="tokenomics.utility.title">Utility</h3>
+                        <p class="card-text" data-lang-key="tokenomics.utility.text">Transaction fees for training and inference operations. Node operator staking requirements. Model licensing and NFT marketplace settlements. Governance voting rights for protocol parameters.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title" data-lang-key="tokenomics.economics.title">Economics</h3>
+                        <p class="card-text" data-lang-key="tokenomics.economics.text">Deflationary burn mechanism on compute usage. Staking yields derived from network transaction fees. Dynamic supply adjustments based on network utilization. Long-term incentive alignment through vesting schedules.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="workloads">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-lang-key="workloads.label">Workloads</span>
+                    <h2 class="section-title" data-lang-key="workloads.title">Accelerating Global AI Compute</h2>
+                </div>
+                <div class="workloads-grid">
+                    <article class="workload-card">
+                        <div class="card-image"><img src="/11.jpeg" alt="Accelerating Global AI Workloads" data-lang-key-alt="workloads.global.alt"></div>
+                        <div class="card-body">
+                            <div class="card-emoji">🚀</div>
+                            <h4 class="card-title" data-lang-key="workloads.global.title">Accelerating Global AI Workloads with NVAI</h4>
+                            <div class="card-subtitle" data-lang-key="workloads.global.subtitle">Decentralized Compute for the Intelligent Future</div>
+                            <p class="card-text" data-lang-key="workloads.global.text">NVAI extends NVIDIA's GPU innovation into a decentralized compute economy. By uniting GPU node providers and AI developers through tokenized incentives, NVAI delivers distributed power for data analytics, model training, and AI inference — accelerating workloads for enterprises, creators, and communities across the world.</p>
+                            <a class="btn btn-learn" href="https://www.nvidia.com/en-us/deep-learning-ai/solutions/data-science/?ncid=no-ncid" target="_blank" rel="noopener noreferrer" data-lang-key="workloads.learnMore">Learn More</a>
+                        </div>
+                    </article>
+
+                    <article class="workload-card">
+                        <div class="card-image"><img src="/12.jpeg" alt="Data Science" data-lang-key-alt="workloads.dataScience.alt"></div>
+                        <div class="card-body">
+                            <div class="card-emoji">📊</div>
+                            <h4 class="card-title" data-lang-key="workloads.dataScience.title">Data Science</h4>
+                            <div class="card-subtitle" data-lang-key="workloads.dataScience.subtitle">Decentralized, GPU-Powered Analytics for Everyone</div>
+                            <p class="card-text" data-lang-key="workloads.dataScience.text">Every dataset holds hidden value — but centralized compute can't scale to meet global demand. NVAI connects idle GPUs worldwide into a distributed data analytics network. With NVAI tokens fueling computation, users can analyze data faster, cheaper, and collaboratively — transforming raw information into intelligence.</p>
+                            <a class="btn btn-learn" href="https://www.nvidia.com/en-us/solutions/ai/inference/?ncid=no-ncid" target="_blank" rel="noopener noreferrer" data-lang-key="workloads.learnMore">Learn More</a>
+                        </div>
+                    </article>
+
+                    <article class="workload-card">
+                        <div class="card-image"><img src="/13.jpeg" alt="Generative AI" data-lang-key-alt="workloads.genAI.alt"></div>
+                        <div class="card-body">
+                            <div class="card-emoji">🌌</div>
+                            <h4 class="card-title" data-lang-key="workloads.genAI.title">Generative AI</h4>
+                            <div class="card-subtitle" data-lang-key="workloads.genAI.subtitle">Powering the Next Wave of Creativity</div>
+                            <p class="card-text" data-lang-key="workloads.genAI.text">Generative AI models are redefining content creation. NVAI allows anyone to access decentralized GPU power to run or fine-tune foundation models — enabling text, image, and code generation at scale. With NVAI, developers can create domain-specific generative AI tools and earn token rewards for sharing model outputs and compute capacity.</p>
+                            <a class="btn btn-learn" href="https://www.nvidia.com/en-us/solutions/ai/generative-ai/?ncid=no-ncid" target="_blank" rel="noopener noreferrer" data-lang-key="workloads.learnMore">Learn More</a>
+                        </div>
+                    </article>
+
+                    <article class="workload-card">
+                        <div class="card-image"><img src="/14.jpeg" alt="High-Performance Compute (HPC)" data-lang-key-alt="workloads.hpc.alt"></div>
+                        <div class="card-body">
+                            <div class="card-emoji">⚡</div>
+                            <h4 class="card-title" data-lang-key="workloads.hpc.title">High-Performance Compute (HPC)</h4>
+                            <div class="card-subtitle" data-lang-key="workloads.hpc.subtitle">Scientific Discovery through Shared Compute Power</div>
+                            <p class="card-text" data-lang-key="workloads.hpc.text">NVAI brings HPC-level compute performance to a global, decentralized network. By connecting thousands of GPU nodes, researchers and enterprises can access large-scale simulation and modeling capacity without the cost of a private data center. NVAI enables science, research, and innovation — powered by tokenized incentives.</p>
+                            <a class="btn btn-learn" href="https://www.nvidia.com/en-us/high-performance-computing/?ncid=no-ncid" target="_blank" rel="noopener noreferrer" data-lang-key="workloads.learnMore">Learn More</a>
+                        </div>
+                    </article>
+
+                    <article class="workload-card">
+                        <div class="card-image"><img src="/15.jpeg" alt="Rendering & Virtualization" data-lang-key-alt="workloads.rendering.alt"></div>
+                        <div class="card-body">
+                            <div class="card-emoji">🎨</div>
+                            <h4 class="card-title" data-lang-key="workloads.rendering.title">Rendering & Virtualization</h4>
+                            <div class="card-subtitle" data-lang-key="workloads.rendering.subtitle">Realistic Designs and Virtual Power</div>
+                            <p class="card-text" data-lang-key="workloads.rendering.text">Designers, creators, and studios can leverage NVAI-powered GPU rendering nodes to produce ultra-high-quality visuals without expensive hardware. With decentralized GPU access, rendering and virtualization workloads become faster, more affordable, and environmentally efficient — all secured on-chain and paid via NVAI tokens.</p>
+                            <a class="btn btn-learn" href="https://www.nvidia.com/en-us/solutions/rendering/?ncid=no-ncid" target="_blank" rel="noopener noreferrer" data-lang-key="workloads.learnMore">Learn More</a>
+                        </div>
+                    </article>
+
+                    <article class="workload-card">
+                        <div class="card-image"><img src="/16.jpeg" alt="Powered by NVAI" data-lang-key-alt="workloads.powered.alt"></div>
+                        <div class="card-body">
+                            <div class="card-emoji">🔗</div>
+                            <h4 class="card-title" data-lang-key="workloads.powered.title">Powered by NVAI</h4>
+                            <div class="card-subtitle" data-lang-key="workloads.powered.subtitle">The Future of Compute Is Decentralized</div>
+                            <p class="card-text" data-lang-key="workloads.powered.text">NVAI transforms how GPU power is shared, traded, and rewarded. With NVAI as the backbone of a decentralized compute economy, compute becomes a liquid, on-chain resource — scalable, transparent, and accessible to all.</p>
+                            <a class="btn btn-learn" href="https://www.nvidia.com/en-us/data-center/virtualization/it-management/?ncid=no-ncid" target="_blank" rel="noopener noreferrer" data-lang-key="workloads.learnMore">Learn More</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="use-cases">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-lang-key="useCases.label">Use Cases</span>
+                    <h2 class="section-title" data-lang-key="useCases.title">Real-World Applications of NVAI</h2>
+                </div>
+                <div class="use-cases-scroll">
+                    <div class="use-cases-grid">
+                        <a href="#workloads" class="use-case-card" data-animate="fade-up">
+                            <div class="use-case-image"><img src="/51.jpeg" alt="Enterprise AI Training" data-lang-key-alt="useCases.enterprise.alt"></div>
+                            <div class="use-case-body">
+                                <h4 class="use-case-title" data-lang-key="useCases.enterprise.title">Enterprise AI Training</h4>
+                                <div class="use-case-subtitle" data-lang-key="useCases.enterprise.subtitle">Train models at scale using idle GPU power.</div>
+                                <p class="use-case-text" data-lang-key="useCases.enterprise.text">NVAI connects global GPU nodes to deliver distributed compute for enterprise AI workloads — enabling high-performance model training without centralized costs.</p>
+                            </div>
+                        </a>
+                        <a href="#workloads" class="use-case-card" data-animate="fade-up">
+                            <div class="use-case-image"><img src="/52.jpeg" alt="AI Creativity Tools" data-lang-key-alt="useCases.creativity.alt"></div>
+                            <div class="use-case-body">
+                                <h4 class="use-case-title" data-lang-key="useCases.creativity.title">AI Creativity Tools</h4>
+                                <div class="use-case-subtitle" data-lang-key="useCases.creativity.subtitle">Powering decentralized content generation.</div>
+                                <p class="use-case-text" data-lang-key="useCases.creativity.text">Artists and developers can access NVAI's decentralized GPU power to build creative tools for image, text, and video generation — fully powered by $NVAI tokens.</p>
+                            </div>
+                        </a>
+                        <a href="#workloads" class="use-case-card" data-animate="fade-up">
+                            <div class="use-case-image"><img src="/53.jpeg" alt="Autonomous Robotics" data-lang-key-alt="useCases.robotics.alt"></div>
+                            <div class="use-case-body">
+                                <h4 class="use-case-title" data-lang-key="useCases.robotics.title">Autonomous Robotics</h4>
+                                <div class="use-case-subtitle" data-lang-key="useCases.robotics.subtitle">Running physical AI agents on the edge.</div>
+                                <p class="use-case-text" data-lang-key="useCases.robotics.text">NVAI provides GPU-powered edge computing for autonomous robots, enabling decentralized intelligence in real-world environments.</p>
+                            </div>
+                        </a>
+                        <a href="#workloads" class="use-case-card" data-animate="fade-up">
+                            <div class="use-case-image"><img src="/54.jpeg" alt="Data Intelligence" data-lang-key-alt="useCases.data.alt"></div>
+                            <div class="use-case-body">
+                                <h4 class="use-case-title" data-lang-key="useCases.data.title">Data Intelligence</h4>
+                                <div class="use-case-subtitle" data-lang-key="useCases.data.subtitle">Turning big data into actionable insights.</div>
+                                <p class="use-case-text" data-lang-key="useCases.data.text">NVAI's distributed analytics platform transforms massive datasets into real-time intelligence — unlocking insights for enterprises and researchers.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai-agents">
+            <div class="container">
+                <canvas id="gpu-particles" aria-hidden="true"></canvas>
+                <div class="section-header">
+                    <span class="section-label" data-lang-key="aiAgents.label">AI Agents</span>
+                    <h2 class="section-title" data-lang-key="aiAgents.title">Powering the Next Generation of Decentralized AI Agents</h2>
+                </div>
+                <div class="ai-agents-intro">
+                    <h3 data-lang-key="aiAgents.overviewTitle">Overview</h3>
+                    <p data-lang-key="aiAgents.overviewText">NVAI enables a new era of agentic AI — autonomous systems that can reason, plan, and act across a decentralized compute network. By leveraging NVAI's distributed GPU nodes, AI agents gain scalable power and on-chain intelligence to solve complex, multi-step challenges.</p>
+                    
+                    <h3 data-lang-key="aiAgents.whatIsTitle">What Is Agentic AI?</h3>
+                    <p data-lang-key="aiAgents.whatIsText">Agentic AI transforms raw data into actionable insights through reasoning and real-time decision-making. In the NVAI ecosystem, these agents learn continuously through feedback from users and the network, creating a self-improving intelligence loop powered by decentralized computation.</p>
+                </div>
+                <div class="ai-agents-video-container">
+                    <div class="video-wrapper" id="ai-agents-video-wrapper">
+                        <img src="/FENGMIAN.jpg" alt="AI Agents Video" class="video-poster" id="video-poster" data-lang-key-alt="aiAgents.videoAlt">
+                        <button class="video-play-btn" id="video-play-btn" aria-label="Play video" data-lang-key-aria-label="aiAgents.playVideo">
+                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                                <circle cx="30" cy="30" r="29" stroke="currentColor" stroke-width="2" fill="rgba(118, 185, 0, 0.2)"/>
+                                <path d="M24 18L42 30L24 42V18Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <video id="ai-agents-video" class="ai-agents-video" controls>
+                            <source src="/sp.mp4" type="video/mp4">
+                            <span data-lang-key="aiAgents.videoUnsupported">Your browser does not support the video tag.</span>
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="creative-productivity">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-lang-key="creative.label">create</span>
+                    <h2 class="section-title" data-lang-key="creative.title">Creative & Productivity</h2>
+                </div>
+                <div class="creative-scroll-container">
+                    <div class="creative-grid">
+                        <article class="creative-card">
+                            <a href="https://developer.nvidia.com/g-assist-hackathon" target="_blank" rel="noopener noreferrer" class="creative-card-link">
+                                <div class="creative-card-image"><img src="/17.jpeg" alt="NVAI Smart Home Plugin Challenge" data-lang-key-alt="creative.card1.alt"></div>
+                                <div class="creative-card-body">
+                                    <div class="creative-card-category" data-lang-key="creative.card1.category">Artificial Intelligence | Competition</div>
+                                    <h4 class="creative-card-title" data-lang-key="creative.card1.title">Plug and Play: Join the NVAI Smart Home Plugin Hackathon</h4>
+                                    <p class="creative-card-text" data-lang-key="creative.card1.text">Join NVAI's Project G-Assist developer event and use decentralized GPU power to build innovative AI home assistant tools. Submit your plugin to earn NVAI token rewards and community prizes.</p>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="creative-card">
+                            <a href="https://www.nvidia.com/en-us/studio/" target="_blank" rel="noopener noreferrer" class="creative-card-link">
+                                <div class="creative-card-image"><img src="/18.jpeg" alt="NVAI Studio Workspace" data-lang-key-alt="creative.card2.alt"></div>
+                                <div class="creative-card-body">
+                                    <div class="creative-card-category" data-lang-key="creative.card2.category">Creativity | Product</div>
+                                    <h4 class="creative-card-title" data-lang-key="creative.card2.title">NVAI Studio — The Cloud Workspace for Creators</h4>
+                                    <p class="creative-card-text" data-lang-key="creative.card2.text">A decentralized AI studio built for digital artists and content creators. Powered by NVAI's distributed GPU network, you can render, generate, and collaborate in real time — unlocking unlimited creativity.</p>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="creative-card">
+                            <a href="https://www.nvidia.com/en-us/geforce/broadcasting/" target="_blank" rel="noopener noreferrer" class="creative-card-link">
+                                <div class="creative-card-image"><img src="/19.jpeg" alt="Decentralized Streaming" data-lang-key-alt="creative.card3.alt"></div>
+                                <div class="creative-card-body">
+                                    <div class="creative-card-category" data-lang-key="creative.card3.category">Live | Technology</div>
+                                    <h4 class="creative-card-title" data-lang-key="creative.card3.title">Broadcast with NVAI — AI-Enhanced Decentralized Streaming</h4>
+                                    <p class="creative-card-text" data-lang-key="creative.card3.text">Stream with global GPU power. NVAI enables ultra-low latency, real-time encoding, and AI-driven video enhancement, offering studio-grade streaming quality powered by community nodes.</p>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="creative-card">
+                            <a href="https://www.nvidia.com/en-us/ai-on-rtx/chatrtx/" target="_blank" rel="noopener noreferrer" class="creative-card-link">
+                                <div class="creative-card-image"><img src="/20.jpeg" alt="NVAI Chat Assistant" data-lang-key-alt="creative.card4.alt"></div>
+                                <div class="creative-card-body">
+                                    <div class="creative-card-category" data-lang-key="creative.card4.category">Artificial Intelligence | Product</div>
+                                    <h4 class="creative-card-title" data-lang-key="creative.card4.title">NVAI Chat — Your Secure On-Chain AI Assistant</h4>
+                                    <p class="creative-card-text" data-lang-key="creative.card4.text">A personal AI assistant built on the NVAI network. Supports voice, image, and file-based search — with all data securely stored and encrypted on-chain for total privacy.</p>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="creative-card">
+                            <a href="https://www.nvidia.com/en-us/geforce/broadcasting/broadcast-app/" target="_blank" rel="noopener noreferrer" class="creative-card-link">
+                                <div class="creative-card-image"><img src="/21.jpeg" alt="NVAI Broadcast Studio" data-lang-key-alt="creative.card5.alt"></div>
+                                <div class="creative-card-body">
+                                    <div class="creative-card-category" data-lang-key="creative.card5.category">Live | Application</div>
+                                    <h4 class="creative-card-title" data-lang-key="creative.card5.title">NVAI Broadcast — AI Virtual Studio</h4>
+                                    <p class="creative-card-text" data-lang-key="creative.card5.text">Transform any space into a professional AI-powered studio. NVAI enables real-time face enhancement, background replacement, and noise suppression for high-quality live production.</p>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="creative-card">
+                            <a href="https://blogs.nvidia.com/blog/rtx-ai-garage-nim-blueprints-g-assist/" target="_blank" rel="noopener noreferrer" class="creative-card-link">
+                                <div class="creative-card-image"><img src="/22.jpeg" alt="NVAI NIM Microservices" data-lang-key-alt="creative.card6.alt"></div>
+                                <div class="creative-card-body">
+                                    <div class="creative-card-category" data-lang-key="creative.card6.category">Artificial Intelligence | Development</div>
+                                    <h4 class="creative-card-title" data-lang-key="creative.card6.title">NVAI NIM — Plug-and-Play Model Deployment</h4>
+                                    <p class="creative-card-text" data-lang-key="creative.card6.text">NVAI's NIM microservices enable developers to deploy inference models instantly. With modular compute sharing and automatic distribution, it's easy to build decentralized AI applications on the NVAI network.</p>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="robotics">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-lang-key="robotics.label">Robot</span>
+                    <h2 class="section-title" data-lang-key="robotics.title">Robotics and Edge AI</h2>
+                </div>
+                <div class="robotics-intro">
+                    <p data-lang-key="robotics.intro">The NVAI Robotics and Edge Intelligence Network provides a decentralized infrastructure for building and deploying AI-powered autonomous systems across industries — including manufacturing, logistics, healthcare, smart cities, and retail. By leveraging NVAI's distributed GPU nodes, developers can train, simulate, and deploy robotic intelligence anywhere in the world — without centralized constraints.</p>
+                </div>
+                <div class="robotics-scroll-container">
+                    <div class="robotics-grid">
+                        <article class="robotics-card">
+                            <a href="https://www.nvidia.com/gtc/dc/sessions/physical-ai-and-robotics-day/" target="_blank" rel="noopener noreferrer" class="robotics-card-link">
+                                <div class="robotics-card-image"><img src="/31.jpeg" alt="Physical AI and Robotics Summit" data-lang-key-alt="robotics.card1.alt"></div>
+                                <div class="robotics-card-body">
+                                    <div class="robotics-card-category" data-lang-key="robotics.card1.category">Robotics | Event</div>
+                                    <h4 class="robotics-card-title" data-lang-key="robotics.card1.title">Physical AI and Robotics Summit — Powered by NVAI</h4>
+                                    <p class="robotics-card-text" data-lang-key="robotics.card1.text">Join our upcoming NVAI Global Robotics Summit to explore how decentralized compute is reshaping the future of physical AI and intelligent automation.</p>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="robotics-card">
+                            <a href="https://nvidianews.nvidia.com/news/nvidia-accelerates-robotics-research-and-development-with-new-open-models-and-simulation-libraries" target="_blank" rel="noopener noreferrer" class="robotics-card-link">
+                                <div class="robotics-card-image"><img src="/32.jpeg" alt="NVAI Accelerates Robot Intelligence" data-lang-key-alt="robotics.card2.alt"></div>
+                                <div class="robotics-card-body">
+                                    <div class="robotics-card-category" data-lang-key="robotics.card2.category">Robotics | Announcement</div>
+                                    <h4 class="robotics-card-title" data-lang-key="robotics.card2.title">NVAI Accelerates the Future of Robot Intelligence</h4>
+                                    <p class="robotics-card-text" data-lang-key="robotics.card2.text">Through open APIs, cross-chain model sharing, and decentralized compute allocation, NVAI is empowering robotics researchers to build faster, smarter, and more autonomous systems.</p>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="robotics-card">
+                            <a href="https://blogs.nvidia.com/blog/newton-physics-engine-openusd/" target="_blank" rel="noopener noreferrer" class="robotics-card-link">
+                                <div class="robotics-card-image"><img src="/33.png" alt="Open Simulation and Edge Learning" data-lang-key-alt="robotics.card3.alt"></div>
+                                <div class="robotics-card-body">
+                                    <div class="robotics-card-category" data-lang-key="robotics.card3.category">Robotics | Blog</div>
+                                    <h4 class="robotics-card-title" data-lang-key="robotics.card3.title">Open Simulation and Edge Learning on NVAI</h4>
+                                    <p class="robotics-card-text" data-lang-key="robotics.card3.text">NVAI's distributed simulation framework and modular AI agents enable developers to accelerate robot learning across a unified on-chain environment — enhancing collaboration and scalability.</p>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="robotics-card">
+                            <a href="https://blogs.nvidia.com/blog/jetson-thor-physical-ai-edge/" target="_blank" rel="noopener noreferrer" class="robotics-card-link">
+                                <div class="robotics-card-image"><img src="/34.jpeg" alt="Physical AI and Edge Autonomy" data-lang-key-alt="robotics.card4.alt"></div>
+                                <div class="robotics-card-body">
+                                    <div class="robotics-card-category" data-lang-key="robotics.card4.category">Robotics | Announcement</div>
+                                    <h4 class="robotics-card-title" data-lang-key="robotics.card4.title">The Universal Platform for Physical AI and Edge Autonomy</h4>
+                                    <p class="robotics-card-text" data-lang-key="robotics.card4.text">NVAI introduces the Edge Compute Protocol, integrating real-world robotics data with blockchain-based model distribution, enabling fully decentralized robotic deployments.</p>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="robotics-card">
+                            <a href="https://blogs.nvidia.com/blog/amazon-zero-touch-manufacturing" target="_blank" rel="noopener noreferrer" class="robotics-card-link">
+                                <div class="robotics-card-image"><img src="/35.jpeg" alt="Smart Manufacturing" data-lang-key-alt="robotics.card5.alt"></div>
+                                <div class="robotics-card-body">
+                                    <div class="robotics-card-category" data-lang-key="robotics.card5.category">Robotics | Blog</div>
+                                    <h4 class="robotics-card-title" data-lang-key="robotics.card5.title">Smart Manufacturing Powered by NVAI Nodes</h4>
+                                    <p class="robotics-card-text" data-lang-key="robotics.card5.text">Manufacturing partners now deploy NVAI-powered robotic systems that autonomously audit, assemble, and optimize production using verifiable on-chain intelligence.</p>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="robotics-card">
+                            <a href="https://blogs.nvidia.com/blog/physical-ai-research-siggraph-2025/" target="_blank" rel="noopener noreferrer" class="robotics-card-link">
+                                <div class="robotics-card-image"><img src="/36.jpeg" alt="NVAI Research Shapes Physical AI" data-lang-key-alt="robotics.card6.alt"></div>
+                                <div class="robotics-card-body">
+                                    <div class="robotics-card-category" data-lang-key="robotics.card6.category">Robotics | Blog</div>
+                                    <h4 class="robotics-card-title" data-lang-key="robotics.card6.title">NVAI Research Shapes Physical AI</h4>
+                                    <p class="robotics-card-text" data-lang-key="robotics.card6.text">Breakthroughs in decentralized neural rendering, real-time simulation, and multi-agent learning drive the evolution of physical AI across robotics, self-driving systems, and digital twins.</p>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="robotics-card">
+                            <a href="https://blogs.nvidia.com/blog/hexagon-robotics-ai-software-aeon-humanoid" target="_blank" rel="noopener noreferrer" class="robotics-card-link">
+                                <div class="robotics-card-image"><img src="/37.jpeg" alt="Humanoid Robotics" data-lang-key-alt="robotics.card7.alt"></div>
+                                <div class="robotics-card-body">
+                                    <div class="robotics-card-category" data-lang-key="robotics.card7.category">Robotics | Blog</div>
+                                    <h4 class="robotics-card-title" data-lang-key="robotics.card7.title">Building the Future of Humanoid Robotics with NVAI</h4>
+                                    <p class="robotics-card-text" data-lang-key="robotics.card7.text">Global robotics labs are integrating NVAI's edge computing layer to train humanoid systems capable of real-world perception, manipulation, and digital twin generation.</p>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="robotics-card">
+                            <a href="https://blogs.nvidia.com/blog/foxconn-smart-hospital-robot/" target="_blank" rel="noopener noreferrer" class="robotics-card-link">
+                                <div class="robotics-card-image"><img src="/38.jpeg" alt="Healthcare Robotics" data-lang-key-alt="robotics.card8.alt"></div>
+                                <div class="robotics-card-body">
+                                    <div class="robotics-card-category" data-lang-key="robotics.card8.category">Robotics | Announcement</div>
+                                    <h4 class="robotics-card-title" data-lang-key="robotics.card8.title">Healthcare Robotics with NVAI Edge Compute</h4>
+                                    <p class="robotics-card-text" data-lang-key="robotics.card8.text">Hospitals and research facilities are adopting NVAI's decentralized GPU clusters to deploy robotic assistants for diagnostics, logistics, and precision healthcare.</p>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="robotics-card">
+                            <a href="https://developer.nvidia.com/blog/r2d2-unlocking-robotic-assembly-and-contact-rich-manipulation-with-nvidia-research/" target="_blank" rel="noopener noreferrer" class="robotics-card-link">
+                                <div class="robotics-card-image"><img src="/39.png" alt="Robotic Assembly" data-lang-key-alt="robotics.card9.alt"></div>
+                                <div class="robotics-card-body">
+                                    <div class="robotics-card-category" data-lang-key="robotics.card9.category">Robotics | Blog</div>
+                                    <h4 class="robotics-card-title" data-lang-key="robotics.card9.title">Unlocking Robotic Assembly and Collaborative Automation</h4>
+                                    <p class="robotics-card-text" data-lang-key="robotics.card9.text">NVAI's modular compute layer enables robotics developers to prototype and execute contact-rich manipulation workflows in shared, verifiable simulation environments.</p>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="robotics-card">
+                            <a href="https://blogs.nvidia.com/blog/nvidia-research-robotics-icra-2025/" target="_blank" rel="noopener noreferrer" class="robotics-card-link">
+                                <div class="robotics-card-image"><img src="/40.png" alt="Next-Gen Robotics Research" data-lang-key-alt="robotics.card10.alt"></div>
+                                <div class="robotics-card-body">
+                                    <div class="robotics-card-category" data-lang-key="robotics.card10.category">Robotics | Blog</div>
+                                    <h4 class="robotics-card-title" data-lang-key="robotics.card10.title">Decentralized Research Driving Next-Gen Robotics</h4>
+                                    <p class="robotics-card-text" data-lang-key="robotics.card10.text">From multimodal AI agents to synthetic data generation, NVAI's research ecosystem fuels breakthroughs that push advanced robotics toward full autonomy.</p>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="networking">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-lang-key="networking.label">Networking</span>
+                    <h2 class="section-title" data-lang-key="networking.title">Stay Up to Date on the Future of Decentralized Compute</h2>
+                </div>
+                <div class="networking-scroll-container">
+                    <div class="networking-grid">
+                        <article class="networking-card">
+                            <a href="https://nvidianews.nvidia.com/news/nvidia-spectrum-x-co-packaged-optics-networking-switches-ai-factories" target="_blank" rel="noopener noreferrer" class="networking-card-link">
+                                <div class="networking-card-image"><img src="/61.jpeg" alt="NVAI Proof-of-Compute Network" data-lang-key-alt="networking.card1.alt"></div>
+                                <div class="networking-card-body">
+                                    <div class="networking-card-category" data-lang-key="networking.card1.category">Networking | Announcement</div>
+                                    <h4 class="networking-card-title" data-lang-key="networking.card1.title">NVAI Launches Global Proof-of-Compute Network</h4>
+                                    <p class="networking-card-text" data-lang-key="networking.card1.text">Achieve 3x efficiency and verifiable trust across thousands of GPU nodes — connecting enterprises, developers, and AI agents through a unified decentralized infrastructure.</p>
+                                    <span class="networking-card-cta" data-lang-key="networking.card1.cta">→ Read Press Release</span>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="networking-card">
+                            <a href="https://nvidianews.nvidia.com/news/nvidia-blackwell-ultra-ai-factory-platform-paves-way-for-age-of-ai-reasoning" target="_blank" rel="noopener noreferrer" class="networking-card-link">
+                                <div class="networking-card-image"><img src="/62.jpeg" alt="NVAI Data Fabric" data-lang-key-alt="networking.card2.alt"></div>
+                                <div class="networking-card-body">
+                                    <div class="networking-card-category" data-lang-key="networking.card2.category">Data | Infrastructure</div>
+                                    <h4 class="networking-card-title" data-lang-key="networking.card2.title">NVAI Data Fabric — Real-Time Intelligence for the Decentralized Era</h4>
+                                    <p class="networking-card-text" data-lang-key="networking.card2.text">NVAI's Data Fabric integrates IPFS, Filecoin, and Arweave to accelerate AI data access, training pipelines, and cross-chain intelligence with verifiable provenance.</p>
+                                    <span class="networking-card-cta" data-lang-key="networking.card2.cta">→ Explore the Data Platform</span>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="networking-card">
+                            <a href="https://nvidianews.nvidia.com/news/nvidia-and-storage-industry-leaders-unveil-new-class-of-enterprise-infrastructure-for-the-age-of-ai" target="_blank" rel="noopener noreferrer" class="networking-card-link">
+                                <div class="networking-card-image"><img src="/63.jpeg" alt="Enterprise Infrastructure" data-lang-key-alt="networking.card3.alt"></div>
+                                <div class="networking-card-body">
+                                    <div class="networking-card-category" data-lang-key="networking.card3.category">Enterprise | Partnership</div>
+                                    <h4 class="networking-card-title" data-lang-key="networking.card3.title">NVAI Enterprise Infrastructure — Unified AI Factory Platform</h4>
+                                    <p class="networking-card-text" data-lang-key="networking.card3.text">NVAI's Data Fabric integrates IPFS, Filecoin, and Arweave to accelerate AI data access, training pipelines, and cross-chain intelligence with verifiable provenance.</p>
+                                    <span class="networking-card-cta" data-lang-key="networking.card3.cta">→ Explore the Data Platform</span>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="networking-card">
+                            <a href="https://blogs.nvidia.com/blog/cybersecurity-ai-critical-infrastructure/" target="_blank" rel="noopener noreferrer" class="networking-card-link">
+                                <div class="networking-card-image"><img src="/64.jpeg" alt="NVAI Security Layer" data-lang-key-alt="networking.card4.alt"></div>
+                                <div class="networking-card-body">
+                                    <div class="networking-card-category" data-lang-key="networking.card4.category">Security | Protection</div>
+                                    <h4 class="networking-card-title" data-lang-key="networking.card4.title">NVAI Security Layer — Safeguarding the Decentralized AI Network</h4>
+                                    <p class="networking-card-text" data-lang-key="networking.card4.text">The NVAI Security Layer combines zero-knowledge verification, node reputation scoring, and encrypted task routing to secure global compute against malicious actors.</p>
+                                    <span class="networking-card-cta" data-lang-key="networking.card4.cta">→ Read the Blog</span>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cloud-gaming" class="cloud-gaming-section" aria-labelledby="cloud-gaming-title">
+            <div class="container cloud-gaming-grid">
+                <div class="cloud-gaming-body">
+                    <div class="section-header">
+                        <span class="section-label" data-lang-key="cloudGaming.label">Cloud Gaming</span>
+                        <h2 id="cloud-gaming-title" class="section-title" data-lang-key="cloudGaming.title">Cloud Gaming — Powered by NVAI</h2>
+                    </div>
+                    <div class="cloud-gaming-visual mobile-inline" aria-hidden="true">
+                        <img class="lazy-img" src="/game.jpeg" alt="Cloud gaming streamed with RTX performance on the decentralized NVAI GPU network" width="1280" height="720" data-lang-key-alt="cloudGaming.imageAlt" decoding="async" loading="lazy" fetchpriority="high" />
+                    </div>
+                    <div class="cloud-gaming-copy">
+                        <div class="cloud-gaming-subtitle" data-lang-key="cloudGaming.subtitle">Experience high-performance RTX gaming streamed directly from NVAI's decentralized GPU cloud.</div>
+                        <p class="cloud-gaming-line" data-lang-key="cloudGaming.line1">Over 4,000 PC games can be played instantly with ultra-low latency and full GeForce RTX power — no downloads, no installations.</p>
+                        <h4 class="cloud-gaming-subheading" data-lang-key="cloudGaming.subheading">Connect Your Library</h4>
+                        <p class="cloud-gaming-line" data-lang-key="cloudGaming.line2">Link your Steam, Epic Games, or Ubisoft Connect accounts to play the titles you already own — fully rendered on NVAI GPU nodes distributed across the globe.</p>
+                        <p class="cloud-gaming-line" data-lang-key="cloudGaming.line3">The future of gaming runs on decentralized compute.</p>
+
+                        <div class="cloud-gaming-ctas">
+                            <button class="btn btn-primary" id="btn-cloud-play" aria-label="Open Cloud Gaming coming soon dialog" data-lang-key="cloudGaming.playNow" data-lang-key-aria-label="cloudGaming.playNowAria">Play Now →</button>
+                            <a class="btn btn-secondary" id="btn-cloud-supported" href="https://www.nvidia.com/en-us/geforce-now/how-to-play/#install-to-play" target="_blank" rel="noopener noreferrer" aria-label="View supported cloud gaming platforms" data-lang-key="cloudGaming.seeGames" data-lang-key-aria-label="cloudGaming.seeGamesAria">See Supported Games →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="cloud-gaming-visual">
+                    <img class="lazy-img" src="/game.jpeg" alt="Cloud gaming streamed with RTX performance on the decentralized NVAI GPU network" width="1280" height="720" data-lang-key-alt="cloudGaming.imageAlt" decoding="async" loading="lazy" fetchpriority="high" />
+                </div>
+            </div>
+        </section>
+
+        <section id="ecosystem">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-lang-key="ecosystem.label">Network</span>
+                    <h2 class="section-title" data-lang-key="ecosystem.title">Ecosystem & Partners</h2>
+                </div>
+                <div class="logo-wall">
+                    <img src="/blockhead.png" alt="Blockhead" class="partner-logo" data-lang-key-alt="ecosystem.logo.blockhead">
+                    <img src="/coinmarketcap.png" alt="CoinMarketCap" class="partner-logo" data-lang-key-alt="ecosystem.logo.coinmarketcap">
+                    <img src="/logo-aws.png" alt="AWS" class="partner-logo" data-lang-key-alt="ecosystem.logo.aws">
+                    <img src="/logo-google.png" alt="Google" class="partner-logo" data-lang-key-alt="ecosystem.logo.google">
+                    <img src="/logo-idrx.png" alt="IDRX" class="partner-logo" data-lang-key-alt="ecosystem.logo.idrx">
+                    <img src="/logo-ninjapromo.png" alt="Ninja Promo" class="partner-logo" data-lang-key-alt="ecosystem.logo.ninjapromo">
+                    <img src="/logo-valuex.png" alt="ValueX" class="partner-logo" data-lang-key-alt="ecosystem.logo.valuex">
+                    <img src="/tech-in-asia.png" alt="Tech in Asia" class="partner-logo" data-lang-key-alt="ecosystem.logo.techinasia">
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-lang-key="roadmap.label">Timeline</span>
+                    <h2 class="section-title" data-lang-key="roadmap.title">Roadmap</h2>
+                </div>
+                <div class="timeline-wrapper">
+                    <div class="timeline-header">
+                        <h3 class="timeline-main-title" data-lang-key="roadmap.mainTitle">Timeline — Roadmap</h3>
+                    </div>
+                    <div class="timeline" data-animate="fade-up">
+                        <div class="timeline-line" id="timeline-line"></div>
+                        <div class="timeline-items-wrapper">
+                            <div class="timeline-item" data-quarter="Q4">
+                                <div class="node">
+                                    <div class="node-inner">🧱</div>
+                                </div>
+                                <div class="timeline-content">
+                                    <div class="quarter-title">2025 Q4</div>
+                                    <div class="quarter-name" data-lang-key="roadmap.q4.name">Foundation</div>
+                                    <ul class="quarter-items">
+                                        <li data-lang-key="roadmap.q4.item1">Technical whitepaper release</li>
+                                        <li data-lang-key="roadmap.q4.item2">Testnet activation with Proof-of-Compute verification</li>
+                                        <li data-lang-key="roadmap.q4.item3">Node onboarding and GPU contribution tracking</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="timeline-item" data-quarter="Q1">
+                                <div class="node">
+                                    <div class="node-inner">🔒</div>
+                                </div>
+                                <div class="timeline-content">
+                                    <div class="quarter-title">2026 Q1</div>
+                                    <div class="quarter-name" data-lang-key="roadmap.q1.name">Validation</div>
+                                    <ul class="quarter-items">
+                                        <li data-lang-key="roadmap.q1.item1">Staking & reward program launch</li>
+                                        <li data-lang-key="roadmap.q1.item2">Security audits and incentive stress testing</li>
+                                        <li data-lang-key="roadmap.q1.item3">CUDA Virtual Machine beta deployment</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="timeline-item" data-quarter="Q2">
+                                <div class="node">
+                                    <div class="node-inner">⚙️</div>
+                                </div>
+                                <div class="timeline-content">
+                                    <div class="quarter-title">2026 Q2</div>
+                                    <div class="quarter-name" data-lang-key="roadmap.q2.name">Expansion</div>
+                                    <ul class="quarter-items">
+                                        <li data-lang-key="roadmap.q2.item1">AI Marketplace Beta with model licensing</li>
+                                        <li data-lang-key="roadmap.q2.item2">Cross-chain bridge to Ethereum and Solana</li>
+                                        <li data-lang-key="roadmap.q2.item3">GPU Node Explorer dashboard 2.0 release</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="timeline-item" data-quarter="Q3">
+                                <div class="node">
+                                    <div class="node-inner">🚀</div>
+                                </div>
+                                <div class="timeline-content">
+                                    <div class="quarter-title">2026 Q3</div>
+                                    <div class="quarter-name" data-lang-key="roadmap.q3.name">Launch</div>
+                                    <ul class="quarter-items">
+                                        <li data-lang-key="roadmap.q3.item1">Mainnet activation</li>
+                                        <li data-lang-key="roadmap.q3.item2">NVAI Governance launch</li>
+                                        <li data-lang-key="roadmap.q3.item3">Developer SDK & API Portal release</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <canvas id="timeline-particles" aria-hidden="true"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gpu-dashboard">
+            <div class="container">
+                <div class="dashboard-grid">
+                    <div class="globe-wrap">
+                        <canvas id="dashboard-globe" aria-label="Global GPU nodes globe" data-lang-key-aria-label="dashboard.globeAria"></canvas>
+                    </div>
+                    <div class="stats-wrap">
+                        <div class="stats-title">
+                            <h2 data-lang-key="dashboard.title">GPU Node Dashboard</h2>
+                            <span class="stats-sub" data-lang-key="dashboard.subtitle">Tracking global compute power in real time.</span>
+                        </div>
+                        <div class="stats-tiles">
+                            <div class="stats-tile"><div class="label" data-lang-key="dashboard.nodes">Active Nodes</div><div id="stat-nodes" class="value">1,284</div></div>
+                            <div class="stats-tile"><div class="label" data-lang-key="dashboard.power">Total Compute Power</div><div id="stat-power" class="value">12.6 PFLOPS</div></div>
+                            <div class="stats-tile"><div class="label" data-lang-key="dashboard.tasks">Verified Tasks</div><div id="stat-tasks" class="value">48,239</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="staking-rewards" class="staking-section" data-animate="fade-up">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label" data-lang-key="staking.label">STAKING</span>
+            <h2 class="section-title" data-lang-key="staking.title">Staking & Rewards</h2>
+        </div>
+        <p class="staking-intro" data-lang-key="staking.intro">Stake your NVAI tokens to secure the network and earn compute rewards. Node operators and delegators receive staking yields based on verified workloads and network participation.</p>
+        <div class="staking-grid">
+            <div class="staking-card" data-animate="fade-up">
+                <div class="staking-card-image"><img src="/43.jpg" alt="Stake-to-Earn" data-lang-key-alt="staking.card1.alt"></div>
+                <div class="staking-icon">🔸</div>
+                <h3 class="staking-card-title" data-lang-key="staking.card1.title">Stake-to-Earn</h3>
+                <p class="staking-card-text" data-lang-key="staking.card1.text">Stake NVAI to support decentralized compute and earn periodic rewards.</p>
+            </div>
+            <div class="staking-card" data-animate="fade-up">
+                <div class="staking-card-image"><img src="/41.png" alt="Compute Task Rewards" data-lang-key-alt="staking.card2.alt"></div>
+                <div class="staking-icon">🔸</div>
+                <h3 class="staking-card-title" data-lang-key="staking.card2.title">Compute Task Rewards</h3>
+                <p class="staking-card-text" data-lang-key="staking.card2.text">Rewards distributed automatically for verified Proof-of-Compute tasks.</p>
+            </div>
+            <div class="staking-card" data-animate="fade-up">
+                <div class="staking-card-image"><img src="/42.png" alt="Deflationary Burn Mechanism" data-lang-key-alt="staking.card3.alt"></div>
+                <div class="staking-icon">🔸</div>
+                <h3 class="staking-card-title" data-lang-key="staking.card3.title">Deflationary Burn Mechanism</h3>
+                <p class="staking-card-text" data-lang-key="staking.card3.text">A portion of compute fees are burned to create long-term token scarcity.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section id="developer-portal">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-lang-key="dev.label">Developer Portal</span>
+                    <h2 class="section-title" data-lang-key="dev.title">Build on NVAI</h2>
+                </div>
+                <p class="dev-intro" data-lang-key="dev.intro">
+                    Access SDKs, API docs, and testnet tools.<br>
+                    Start deploying models, running compute nodes, or integrating decentralized AI into your apps.
+                </p>
+                <div class="dev-actions">
+                    <a class="btn btn-outline-green" href="https://www.nvidia.com/en-us/industries/" data-lang-key="dev.cta.docs">Developer Docs →</a>
+                    <a class="btn btn-outline-green" href="https://github.com/NVIDIA" data-lang-key="dev.cta.runNode">Run a Node →</a>
+                    <a class="btn btn-outline-green" href="https://build.nvidia.com/explore/discover" data-lang-key="dev.cta.apiKey">Get API Key →</a>
+                </div>
+                <canvas id="dev-portal-canvas" aria-hidden="true"></canvas>
+            </div>
+        </section>
+
+        <section id="faq">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-lang-key="faq.label">Information</span>
+                    <h2 class="section-title" data-lang-key="faq.title">FAQ & Compliance</h2>
+                </div>
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span data-lang-key="faq.q1">Is NCN affiliated with NVIDIA?</span>
+                            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p data-lang-key="faq.a1">The NCN (NVIDIA Compute Network) project is developed under the NVIDIA ecosystem and aligned with its mission to advance global AI computing. It operates as an independent blockchain initiative powered by NVIDIA-inspired technologies.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span data-lang-key="faq.q2">What is the purpose of NVAI?</span>
+                            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p data-lang-key="faq.a2">NVAI is the native token that powers the NCN ecosystem. It serves as the primary medium for computation payments, staking, node rewards, and governance across the decentralized GPU compute network.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span data-lang-key="faq.q3">What is Proof of Compute (PoC)?</span>
+                            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p data-lang-key="faq.a3">Proof of Compute is NCN's consensus mechanism where GPU nodes validate actual AI workloads — such as training or inference — instead of wasteful mining. Each task is cryptographically verified, ensuring that real computation contributes directly to model performance and network trust.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span data-lang-key="faq.q4">What is the NVAI Presale?</span>
+                            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p data-lang-key="faq.a4">The NVAI Presale offers early participants the opportunity to acquire tokens before the public exchange listing. Funds raised during the presale are allocated to network development, GPU infrastructure expansion, and ecosystem incentives.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span data-lang-key="faq.q5">How can I join the NVAI Presale?</span>
+                            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p data-lang-key="faq.a5">You can participate through the official NVAI Presale interface on this site. Simply connect your wallet (ETH, BNB, USDT, or USDC) and purchase NVAI tokens. Once the presale ends, your tokens will be claimable or automatically distributed to your connected address before the mainnet launch.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span data-lang-key="faq.q6">How does $NVAI accrue value?</span>
+                            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer" data-lang-key="faq.a6">
+                            <p>$NVAI gains value through multiple on-chain utilities:</p>
+                            <p><strong>Compute Payments:</strong> Used to pay for AI training and inference tasks.</p>
+                            <p><strong>Staking Rewards:</strong> Earned by GPU node operators and delegators.</p>
+                            <p><strong>Model Licensing & Marketplace Fees:</strong> Revenue from AI model sharing.</p>
+                            <p><strong>Deflationary Burns:</strong> A portion of compute fees are permanently burned to increase scarcity.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span data-lang-key="faq.q7">How can I participate in the NVAI ecosystem?</span>
+                            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer" data-lang-key="faq.a7">
+                            <p>You can:</p>
+                            <p><strong>Join the Testnet</strong> and contribute your GPU to the network.</p>
+                            <p><strong>Stake NVAI tokens</strong> to earn compute-based rewards.</p>
+                            <p><strong>Deploy AI models or datasets</strong> through the upcoming NVAI Marketplace.</p>
+                            <p><strong>Run an NVAI Node</strong> using Jetson, RTX, or data center GPUs.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span data-lang-key="faq.q8">What makes NVAI different from traditional GPU cloud services?</span>
+                            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p data-lang-key="faq.a8">Unlike centralized GPU providers, NVAI connects globally distributed GPU nodes into a decentralized marketplace. This ensures lower costs, open access, and transparent performance verification through blockchain proofs.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span data-lang-key="faq.q9">What industries can benefit from NVAI?</span>
+                            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer" data-lang-key="faq.a9">
+                            <p>NVAI supports multiple AI domains:</p>
+                            <p><strong>Enterprise AI Training</strong> (distributed deep learning)</p>
+                            <p><strong>Generative AI & Creativity Tools</strong></p>
+                            <p><strong>Autonomous Robotics & Edge AI</strong></p>
+                            <p><strong>Scientific Research and Simulation</strong></p>
+                            <p><strong>Data Intelligence & Analytics</strong></p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span data-lang-key="faq.q10">Is NVAI audited?</span>
+                            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p data-lang-key="faq.a10">Yes. Smart contracts and consensus logic are audited by leading security firms such as CertiK and OpenZeppelin to ensure transparency and safety for participants.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span data-lang-key="faq.q11">What are the risks involved?</span>
+                            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p data-lang-key="faq.a11">Blockchain and cryptocurrency investments carry inherent risks, including volatility, regulatory uncertainty, and technical vulnerabilities. Participants should conduct their own research before engaging with the NVAI ecosystem. This site does not provide financial advice.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span data-lang-key="faq.q12">Where can I learn more or get support?</span>
+                            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer" data-lang-key="faq.a12">
+                            <p>Visit our <a href="#developer-portal" style="color: var(--nv-green); text-decoration: underline;">Developer Portal</a> to access SDKs and API documentation, or join our Discord community to collaborate with other developers and node operators.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="/Nvidia-Logo-PNG-Clipart.png" alt="NCN Logo" class="brand-icon">
+                    <span class="footer-text">NCN <span class="brand-separator">·</span> <span class="brand-subtitle" data-lang-key="header.brandSubtitle">NVIDIA Compute Network</span></span>
+                </div>
+                <nav class="nav">
+                    <a href="#whitepaper" class="nav-link" data-lang-key="header.whitepaper">Whitepaper</a>
+                    <a href="#buy" class="btn-nav" data-lang-key="header.buy">Buy $NVAI</a>
+                </nav>
+            </div>
+            <div class="footer-policy-links">
+                <a href="https://www.nvidia.com/en-us/about-nvidia/privacy-policy/" target="_blank" rel="noopener noreferrer" class="footer-policy-link" data-lang-key="footer.privacyPolicy">Privacy Policy</a>
+                <a href="https://www.nvidia.com/en-us/about-nvidia/privacy-center/" target="_blank" rel="noopener noreferrer" class="footer-policy-link" data-lang-key="footer.privacyChoices">Your Privacy Choices</a>
+                <a href="https://www.nvidia.com/en-us/about-nvidia/privacy-center/" target="_blank" rel="noopener noreferrer" class="footer-policy-link" data-lang-key="footer.terms">Terms of Service</a>
+            </div>
+            <div class="footer-legal" data-lang-key="footer.legal">
+                <p>© 2025 NCN Community.<br>
+                The NCN project is a decentralized compute initiative developed under the NVIDIA ecosystem.<br>
+                It aims to extend NVIDIA's GPU innovation into a global, blockchain-powered AI infrastructure.<br>
+                Operated by the NCN Community, this project aligns with NVIDIA's vision of accelerating the world's transition to intelligent computing.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="script.js" type="module"></script>
+    <script src="gpu-dashboard.js"></script>
+
+    <!-- Explorer Overlay -->
+    <div id="explorer-overlay">
+        <canvas id="explorer-canvas"></canvas>
+        <button id="explorer-close" class="btn-explorer">Close</button>
+    </div>
+</body>
+</html>
