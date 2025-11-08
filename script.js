@@ -1,5 +1,5 @@
 // Countdown Timer
-const targetDate = new Date('2025-11-15T00:00:00Z').getTime();
+const targetDate = new Date('2025-11-16T04:00:00Z').getTime();
 
 function updateCountdown() {
     const now = new Date().getTime();
