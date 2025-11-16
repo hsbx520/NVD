@@ -1,5 +1,5 @@
 // Countdown Timer
-const targetDate = new Date('2025-11-16T04:00:00Z').getTime();
+const targetDate = new Date('2025-11-19T04:00:00Z').getTime();
 
 function updateCountdown() {
     const now = new Date().getTime();
@@ -464,7 +464,7 @@ const PRESALE_CONFIG = {
         USDT: "Ethereum or BNB Smart Chain.",
         USDC: "Ethereum or BNB Smart Chain."
     },
-    COUNTDOWN_TARGET_UTC: "2025-11-16T04:00:00Z"
+    COUNTDOWN_TARGET_UTC: "2025-11-16T16:00:00Z"
 };
 
 // Presale State
