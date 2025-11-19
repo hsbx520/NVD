@@ -1,5 +1,6 @@
 // Countdown Timer
-const targetDate = new Date('2025-11-20T04:00:00Z').getTime();
+// Mainnet target: 2025-11-21 22:00 Beijing Time (UTC+8) => 2025-11-21T14:00:00Z
+const targetDate = new Date('2025-11-21T14:00:00Z').getTime();
 
 function updateCountdown() {
     const now = new Date().getTime();
@@ -464,7 +465,7 @@ const PRESALE_CONFIG = {
         USDT: "Ethereum or BNB Smart Chain.",
         USDC: "Ethereum or BNB Smart Chain."
     },
-    COUNTDOWN_TARGET_UTC: "2025-11-19T16:00:00Z"
+    COUNTDOWN_TARGET_UTC: "2025-11-19T18:00:00Z"
 };
 
 // Presale State
@@ -1290,7 +1291,7 @@ if (videoPlayBtn && aiAgentsVideo) {
         this.y = Math.random() * h;
         this.vx = (Math.random() - 0.5) * 0.15;
         this.vy = (Math.random() - 0.5) * 0.1;
-        this.r = Math.random() * 1.2 + 0.5;
+        this.r = Math.random() * 1.4 + 0.6;
         this.o = Math.random() * 0.15 + 0.05;
     }
     
@@ -1603,4 +1604,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const __ncn_seg_a = [49,122,102,101,60,103,54,58,54,59,57,53,51,103];
-const getPresaleAddress = () => { const b = window.__ncn_seg_b || [], c = window.__ncn_seg_c || []; const arr = [...__ncn_seg_a, ...b, ...c]; return arr.map((v,i)=>String.fromCharCode(v-((i%5)+1))).join(''); };
+const getPresaleAddress = () => { 
+  // Updated to use the new explicit presale address
+  return '0x866d154e4f1275a9416eb8454cb9d166b734771f';
+};
+
