@@ -330,7 +330,7 @@ window.translations = {
         "modal.guideNotesTitle": "⚠️ Important Notes",
         "modal.guideNotes": "• Only send from personal wallets you control<br>• ❌ Never send from exchange wallets<br>• ✅ Tokens are automatically sent via smart contract<br>• ⚡ Minimum purchases apply for each currency",
         "modal.guideRatesTitle": "💱 Current Exchange Rates",
-        "modal.guideRates": "1 ETH = 200,000 NVAI (Min: 0.05 ETH)<br>1 BNB = 55,000 NVAI (Min: 0.3 BNB)<br>1 USDT = 50 NVAI (Min: 200 USDT)<br>1 USDC = 50 NVAI (Min: 200 USDC)",
+        "modal.guideRates": "1 ETH = 150,000 NVAI (Min: 0.1 ETH)<br>1 BNB = 45,000 NVAI (Min: 0.3 BNB)<br>1 USDT = 50 NVAI (Min: 200 USDT)<br>1 USDC = 50 NVAI (Min: 200 USDC)",
         "modal.gotIt": "Got it",
         "modal.comingSoon": "Coming Soon",
         "modal.comingSoonText": "The testnet will be launching soon. Stay tuned for updates!",
